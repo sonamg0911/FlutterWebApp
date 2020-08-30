@@ -1,6 +1,6 @@
 import 'package:database/database.dart';
-import 'package:database/filter.dart';
-import 'package:sonam_web_app/model/Brewery.dart';
+import 'package:sonam_web_app/model/brewery.dart';
+import 'dart:developer';
 
 class DatabaseManager {
   static final DatabaseManager _singleton = DatabaseManager._internal();
@@ -11,44 +11,48 @@ class DatabaseManager {
 
   static DatabaseManager get databaseManager => _singleton;
 
+  static const BREWERIES = 'breweries';
+
   final database = MemoryDatabaseAdapter().database();
 
   void saveBreweries(List<Brewery> breweries) {
     // Our collection
-    final collection = database.collection('breweries');
+    final collection = database.collection(BREWERIES);
 
-    breweries.forEach((brewery) {
-      Future<void> main() async {
-        // Our document
-        final document = collection.newDocument();
+    breweries.forEach((brewery) async {
+      // Our document
+      final document = collection.newDocument();
 
-        // Insert a brewery
-        await document.insert(data: {
-          'id': brewery.id,
-          'name': brewery.name,
-          'brewery_type': brewery.brewery_type,
-          'street': brewery.street,
-          'city': brewery.city,
-          'state': brewery.state,
-          'postal_code': brewery.postal_code,
-          'longitude': brewery.longitude,
-          'phone': brewery.phone,
-          'website_url': brewery.website_url,
-          'updated_at': brewery.updated_at
-        });
-      }
+      // Insert a brewery
+      await document.insert(data :{
+        'id': brewery.id,
+        'name': brewery.name,
+        'brewery_type': brewery.brewery_type,
+        'street': brewery.street,
+        'city': brewery.city,
+        'state': brewery.state,
+        'postal_code': brewery.postal_code,
+        'longitude': brewery.longitude,
+        'phone': brewery.phone,
+        'website_url': brewery.website_url,
+        'updated_at': brewery.updated_at
+      },
+      reach:Reach.regional)
+          .then((value) => log('brewery added'))
+          .catchError((error) => log("Failed to add brewery: $error"));
     });
+
   }
 
   Future<List<Brewery>> getBreweries() async {
     // Our collection
-    final collection = database.collection('breweries');
+    final collection = database.collection(BREWERIES);
 
     // Define what we are searching
     final query = Query(); //right now getting everything in the collection
 
     // Send query to the database
-    final result = await collection.search(query: query, reach: Reach.local);
+    final result = await collection.search(query: query, reach: Reach.regional);
 
     List<Brewery> breweries = List();
     // For each brewery
@@ -71,6 +75,16 @@ class DatabaseManager {
     }
 
     return breweries;
+  }
 
+  bool hasBreweries() {
+    return database
+        .collection(BREWERIES).collectionId != null;
+  }
+
+  void deleteBreweries() {
+    database
+        .collection(BREWERIES)
+        .searchAndDelete(query: Query(), reach: Reach.regional);
   }
 }

@@ -1,8 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:sonam_web_app/DataRepository.dart';
-import 'package:sonam_web_app/model/Brewery.dart';
+import 'package:sonam_web_app/data_repository.dart';
+import 'package:sonam_web_app/model/brewery.dart';
 
 class BreweryListPage extends StatelessWidget {
   final DataRepository dataRepository = DataRepository();

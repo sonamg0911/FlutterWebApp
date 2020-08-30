@@ -1,18 +1,45 @@
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
 
-class Brewery {
-  final int id;
-  final String name;
-  final String brewery_type;
-  final String street;
-  final String city;
-  final String state;
-  final String postal_code;
-  final String longitude;
-  final String latitude;
-  final String phone;
-  final String website_url;
-  final String updated_at;
+part 'brewery.g.dart';
+
+@HiveType(typeId: 0)
+class Brewery extends HiveObject{
+  @HiveField(0)
+  int id;
+
+  @HiveField(1)
+  String name;
+
+  @HiveField(2)
+  String brewery_type;
+
+  @HiveField(3)
+  String street;
+
+  @HiveField(4)
+  String city;
+
+  @HiveField(5)
+  String state;
+
+  @HiveField(6)
+  String postal_code;
+
+  @HiveField(7)
+  String longitude;
+
+  @HiveField(9)
+  String latitude;
+
+  @HiveField(10)
+  String phone;
+
+  @HiveField(11)
+  String website_url;
+
+  @HiveField(12)
+  String updated_at;
 
   Brewery({
     @required this.id,

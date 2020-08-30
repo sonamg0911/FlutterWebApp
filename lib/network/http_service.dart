@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:sonam_web_app/database/DatabaseManager.dart';
-import 'package:sonam_web_app/model/Brewery.dart';
+import 'package:sonam_web_app/model/brewery.dart';
 
 class HttpService {
 
