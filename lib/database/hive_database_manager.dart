@@ -14,9 +14,7 @@ class HiveDatabaseManager {
   static HiveDatabaseManager get databaseManager => _singleton;
 
   static const BREWERIES = 'breweries';
-
-  Box _breweryBox;
-
+  
   void initializeHive() async{
     Hive.registerAdapter(BreweryAdapter());
     var dir = await getApplicationDocumentsDirectory();
@@ -24,27 +22,25 @@ class HiveDatabaseManager {
   }
 
   void saveBreweries(List<Brewery> breweries) async {
-    _breweryBox = await Hive.openBox(BREWERIES);
-    _breweryBox.addAll(breweries);
+    var _breweryBox = await Hive.openBox(BREWERIES);
+    _breweryBox.put(BREWERIES,breweries);
   }
 
   Future<List<Brewery>> getBreweries() async {
-    _breweryBox = await Hive.openBox(BREWERIES);
-    List<Brewery> breweries;
-    
-    _breweryBox.values.forEach((element) { 
+    var _breweryBox = await Hive.openBox(BREWERIES);
+    /*_breweryBox.values.forEach((element) {
       breweries.add(element);
-    });
-    return breweries;
+    });*/
+    return _breweryBox.get(BREWERIES);
   }
 
   Future<bool> hasBreweries() async {
-    _breweryBox = await Hive.openBox(BREWERIES);
+    var _breweryBox = await Hive.openBox(BREWERIES);
     return _breweryBox.isNotEmpty;
   }
 
   void deleteBreweries() async {
-    _breweryBox = await Hive.openBox(BREWERIES);
+   var  _breweryBox = await Hive.openBox(BREWERIES);
     _breweryBox.deleteFromDisk();
   }
 }
