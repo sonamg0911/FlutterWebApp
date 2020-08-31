@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:sonam_web_app/data_repository.dart';
 import 'package:sonam_web_app/model/brewery.dart';
+import 'package:sonam_web_app/widgets/brewery_list_item.dart';
 
 class BreweryListPage extends StatelessWidget {
   final DataRepository dataRepository = DataRepository();
@@ -21,19 +22,8 @@ class BreweryListPage extends StatelessWidget {
             return ListView(
               children: breweries
                   .map(
-                    (Brewery brewery) => ListTile(
-                  title: Text(brewery.name),
-                  subtitle: Text("${brewery.brewery_type}"),
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                     /* builder: (context) => BreweryDetail(
-                        brewery: Brewery,
-                      ),*/
-                    ),
-                  ),
-                ),
-              )
-                  .toList(),
+                    (Brewery brewery) => BreweryListItem(brewery: brewery),
+              ).toList(),
             );
           } else {
             return Center(child: CircularProgressIndicator());
