@@ -1,16 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:sonam_web_app/model/brewery.dart';
-
 import 'package:flutter/foundation.dart' show kIsWeb;
-
 import 'dart:html' as html;
-
 import 'brewery_detail_page.dart';
-
 
 class BreweryListItem extends StatelessWidget {
 
