@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sonam_web_app/widgets/brewery_list_page.dart';
-import 'database/hive_database_manager.dart';
+import 'database/database_manager.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  HiveDatabaseManager.databaseManager.initializeHive();
+  DatabaseManager.databaseManager.initializeHive();
   runApp(MyApp());
 }
 

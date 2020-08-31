@@ -1,10 +1,10 @@
-import 'package:sonam_web_app/database/hive_database_manager.dart';
+import 'package:sonam_web_app/database/database_manager.dart';
 import 'package:sonam_web_app/model/brewery.dart';
 import 'package:sonam_web_app/network/http_service.dart';
 import 'dart:developer';
 
 class DataRepository {
-  final databaseManager = HiveDatabaseManager.databaseManager;
+  final databaseManager = DatabaseManager.databaseManager;
   final httpService = HttpService.httpService;
 
   Future<List<Brewery>> getBreweries() async {
