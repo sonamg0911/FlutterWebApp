@@ -1,16 +1,13 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
 import 'package:sonam_web_app/model/brewery.dart';
 
 class HttpService {
 
+  //Singleton (to have only one instance of this class in whole app)
   static final HttpService _singleton = HttpService._internal();
-
   factory HttpService() => _singleton;
-
   HttpService._internal();
-
   static HttpService get httpService => _singleton;
 
   final String postsURL = "https://api.openbrewerydb.org/breweries";

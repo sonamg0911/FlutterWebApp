@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sonam_web_app/widgets/brewery_list_page.dart';
-import 'database/database_manager.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  DatabaseManager.databaseManager.initializeHive();
   runApp(MyApp());
 }
 

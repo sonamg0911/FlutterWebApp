@@ -41,7 +41,7 @@ class BreweryDetail extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Brewery Type : ${brewery.brewery_type.toUpperCase()}',
+                    'Brewery Type : ${brewery.breweryType.toUpperCase()}',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -77,7 +77,7 @@ class BreweryDetail extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Postal Code : ${brewery.postal_code}',
+                    'Postal Code : ${brewery.postalCode}',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -107,7 +107,7 @@ class BreweryDetail extends StatelessWidget {
                       ),
                       InkWell(
                         child: Text(
-                          '${brewery.website_url}',
+                          '${brewery.websiteUrl}',
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
@@ -117,7 +117,7 @@ class BreweryDetail extends StatelessWidget {
                           ),
                         ),
                         onTap: (){ if(kIsWeb)
-                          html.window.open(brewery.website_url, '_blank');
+                          html.window.open(brewery.websiteUrl, '_blank');
                         },
                       ),
                     ],

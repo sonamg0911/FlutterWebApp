@@ -54,7 +54,7 @@ class BreweryListItem extends StatelessWidget {
                     ),
                     child: InkWell(
                       child: Text(
-                        '${brewery.website_url}',
+                        '${brewery.websiteUrl}',
                         style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontStyle: FontStyle.italic,
@@ -64,7 +64,7 @@ class BreweryListItem extends StatelessWidget {
                         ),
                       ),
                       onTap: (){ if(kIsWeb)
-                        html.window.open(brewery.website_url, '_blank');
+                        html.window.open(brewery.websiteUrl, '_blank');
                       },
                     ),
                   )
@@ -78,7 +78,7 @@ class BreweryListItem extends StatelessWidget {
                         vertical: 10
                     ),
                     child: Text(
-                      '${brewery.brewery_type.toUpperCase()}',
+                      '${brewery.breweryType.toUpperCase()}',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 22,
