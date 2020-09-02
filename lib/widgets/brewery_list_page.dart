@@ -1,8 +1,8 @@
-import 'dart:async';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sonam_web_app/model/brewery.dart';
 import 'package:sonam_web_app/repository/data_repository.dart';
+import 'package:sonam_web_app/resources/strings.dart';
 import 'package:sonam_web_app/widgets/brewery_list_item.dart';
 
 class BreweryListPage extends StatefulWidget {
@@ -32,22 +32,62 @@ class _BreweryListPageState extends State<BreweryListPage> {
       appBar: AppBar(
         title: Text("Breweries"),
       ),
-      body: StreamBuilder(
-        stream: dataRepository.controller.stream as Stream<List<Brewery>>,
+      body: StreamBuilder<List<Brewery>>(
+        stream: dataRepository.controller.stream,
         builder: (BuildContext context, AsyncSnapshot<List<Brewery>> snapshot) {
-          if (snapshot.hasData) {
-            List<Brewery> breweries = snapshot.data;
-            return ListView(
-              children: breweries
-                  .map(
-                    (Brewery brewery) => BreweryListItem(brewery: brewery),
-                  )
-                  .toList(),
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              {
+                return _placeHolderView();
+              }
+            case ConnectionState.active:
+              {
+                if (snapshot.hasError || !snapshot.hasData) {
+                  return _noDataView();
+                }
+                List<Brewery> breweries = snapshot.data;
+                return ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+                    Brewery item = breweries[index];
+                    return BreweryListItem(brewery: item);
+                  },
+                  itemCount: breweries == null ? 0 : breweries.length,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.2),
+                );
+              }
+            default:
+              {
+                return _noDataView();
+              }
           }
         },
+      ),
+    );
+  }
+
+  Widget _placeHolderView() {
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      alignment: Alignment.center,
+      child: Text(
+        Strings.Getting_your_data,
+        style:
+            TextStyle(fontSize: Theme.of(context).textTheme.headline4.fontSize),
+      ),
+    );
+  }
+
+  Widget _noDataView() {
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      alignment: Alignment.center,
+      child: Text(
+        Strings.NO_DATA_FOUND,
+        style:
+            TextStyle(fontSize: Theme.of(context).textTheme.headline4.fontSize),
       ),
     );
   }
