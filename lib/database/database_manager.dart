@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:html';
+
 import 'package:sonam_web_app/model/brewery.dart';
 
 class DataBaseManager {
@@ -12,7 +13,7 @@ class DataBaseManager {
 
   static const BREWERIES_LIST_SIZE = 'breweries_list_size';
 
-  void saveBreweries(List<Brewery> breweries) async {
+  void saveBreweries(List<Brewery> breweries) {
     //Storing the breweries list size
     getLocalStorage()[BREWERIES_LIST_SIZE] = breweries.length.toString();
 

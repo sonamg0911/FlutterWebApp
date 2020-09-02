@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sonam_web_app/data_repository.dart';
 import 'package:sonam_web_app/model/brewery.dart';
+import 'package:sonam_web_app/repository/data_repository.dart';
 import 'package:sonam_web_app/widgets/brewery_list_item.dart';
 
 class BreweryListPage extends StatefulWidget {
@@ -12,7 +12,6 @@ class BreweryListPage extends StatefulWidget {
 
 class _BreweryListPageState extends State<BreweryListPage> {
   final DataRepository dataRepository = DataRepository();
-  Stream<List<Brewery>> breweryList;
 
   @override
   void initState() {

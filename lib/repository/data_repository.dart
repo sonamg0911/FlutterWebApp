@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:sonam_web_app/database/database_manager.dart';
 import 'package:sonam_web_app/model/brewery.dart';
@@ -16,28 +15,27 @@ class DataRepository {
 
     //checking whether database has breweries present
     if (databaseManager.hasBreweries()) {
-      log('database');
 
       //getting data from database
       breweries = databaseManager.getBreweries();
       controller.add(breweries);
 
-      //getting latest data from REST Api
+      //getting latest data from REST Api and storing in db
       breweries = await httpService.getBreweries();
       databaseManager.saveBreweries(breweries);
 
     } else {
-      log('http');
-
       //getting data from REST Api for the first time
       breweries = await httpService.getBreweries();
       databaseManager.saveBreweries(breweries);
     }
 
+    //adding the latest data in controller to update the stream and refresh UI
     controller.add(breweries);
   }
 
   void dispose(){
     controller.close();
   }
+
 }

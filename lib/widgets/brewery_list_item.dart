@@ -96,7 +96,7 @@ class BreweryListItem extends StatelessWidget {
                         Container(
                           margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
                           child: Text(
-                            '${brewery.phone}',
+                            '${brewery.phone.isNotEmpty?brewery.phone:"NO CONTACT"}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
