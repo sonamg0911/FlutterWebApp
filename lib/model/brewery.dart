@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class Brewery{
+class Brewery {
   final int id;
   final String name;
   final String breweryType;
@@ -46,9 +46,8 @@ class Brewery{
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
-        'id' : id,
+  Map<String, dynamic> toJson() => {
+        'id': id,
         'name': name,
         'brewery_type': breweryType,
         'street': street,

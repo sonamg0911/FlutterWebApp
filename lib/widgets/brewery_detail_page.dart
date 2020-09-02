@@ -5,7 +5,6 @@ import 'package:sonam_web_app/model/brewery.dart';
 import 'dart:html' as html;
 
 class BreweryDetail extends StatelessWidget {
-
   final Brewery brewery;
 
   BreweryDetail({@required this.brewery});
@@ -33,9 +32,7 @@ class BreweryDetail extends StatelessWidget {
           ),
           Card(
             child: Container(
-              margin: EdgeInsets.symmetric(
-                vertical: 20
-              ),
+              margin: EdgeInsets.symmetric(vertical: 20),
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,10 +96,10 @@ class BreweryDetail extends StatelessWidget {
                       Text(
                         'Website Link : ',
                         style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 30,
-                            color: Colors.blueAccent,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 30,
+                          color: Colors.blueAccent,
                         ),
                       ),
                       InkWell(
@@ -113,18 +110,17 @@ class BreweryDetail extends StatelessWidget {
                               fontStyle: FontStyle.normal,
                               fontSize: 30,
                               color: Colors.black,
-                              decoration: TextDecoration.underline
-                          ),
+                              decoration: TextDecoration.underline),
                         ),
-                        onTap: (){ if(kIsWeb)
-                          html.window.open(brewery.websiteUrl, '_blank');
+                        onTap: () {
+                          if (kIsWeb)
+                            html.window.open(brewery.websiteUrl, '_blank');
                         },
                       ),
                     ],
                   ),
                 ],
               ),
-
             ),
           )
         ],

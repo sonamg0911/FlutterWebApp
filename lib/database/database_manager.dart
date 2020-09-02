@@ -4,7 +4,6 @@ import 'dart:html';
 import 'package:sonam_web_app/model/brewery.dart';
 
 class DataBaseManager {
-
   //Singleton (to have only one instance of this class in whole app)
   static final DataBaseManager _singleton = DataBaseManager._internal();
   factory DataBaseManager() => _singleton;
@@ -17,18 +16,18 @@ class DataBaseManager {
     //Storing the breweries list size
     getLocalStorage()[BREWERIES_LIST_SIZE] = breweries.length.toString();
 
-    for( var i = 0 ; i < breweries.length; i++) {
+    for (var i = 0; i < breweries.length; i++) {
       //Storing the brewery in list in json string format
       getLocalStorage()['$i'] = jsonEncode(breweries.elementAt(i));
     }
   }
 
-  List<Brewery> getBreweries()  {
+  List<Brewery> getBreweries() {
     //getting the list size from the database
     final listSize = getLocalStorage()[BREWERIES_LIST_SIZE];
 
     List<Brewery> breweries = List();
-    for( var i = 0 ; i < int.parse(listSize); i++) {
+    for (var i = 0; i < int.parse(listSize); i++) {
       //getting the json string from database and converting to Brewery object
       breweries.add(Brewery.fromJson(json.decode(getLocalStorage()['$i'])));
     }
@@ -45,7 +44,7 @@ class DataBaseManager {
     getLocalStorage().clear();
   }
 
-  Storage getLocalStorage(){
+  Storage getLocalStorage() {
     return window.localStorage;
   }
 }

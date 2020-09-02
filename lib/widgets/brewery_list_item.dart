@@ -7,7 +7,6 @@ import 'dart:html' as html;
 import 'brewery_detail_page.dart';
 
 class BreweryListItem extends StatelessWidget {
-
   final Brewery brewery;
 
   BreweryListItem({@required this.brewery});
@@ -17,7 +16,7 @@ class BreweryListItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
-           builder: (context) => BreweryDetail(brewery : brewery),
+          builder: (context) => BreweryDetail(brewery: brewery),
         ),
       ),
       child: Card(
@@ -29,15 +28,13 @@ class BreweryListItem extends StatelessWidget {
           ),
           padding: EdgeInsets.all(10),
           child: Row(
-            mainAxisAlignment : MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(
-                        vertical: 10
-                    ),
+                    margin: EdgeInsets.symmetric(vertical: 10),
                     child: Text(
                       '${brewery.name.toUpperCase()}',
                       style: TextStyle(
@@ -49,22 +46,20 @@ class BreweryListItem extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(
-                      vertical: 10
-                    ),
+                    margin: EdgeInsets.symmetric(vertical: 10),
                     child: InkWell(
                       child: Text(
                         '${brewery.websiteUrl}',
                         style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontStyle: FontStyle.italic,
-                          fontSize: 18,
-                          color: Colors.black,
-                          decoration: TextDecoration.underline
-                        ),
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 18,
+                            color: Colors.black,
+                            decoration: TextDecoration.underline),
                       ),
-                      onTap: (){ if(kIsWeb)
-                        html.window.open(brewery.websiteUrl, '_blank');
+                      onTap: () {
+                        if (kIsWeb)
+                          html.window.open(brewery.websiteUrl, '_blank');
                       },
                     ),
                   )
@@ -74,9 +69,7 @@ class BreweryListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(
-                        vertical: 10
-                    ),
+                    margin: EdgeInsets.symmetric(vertical: 10),
                     child: Text(
                       '${brewery.breweryType.toUpperCase()}',
                       style: TextStyle(
@@ -87,16 +80,17 @@ class BreweryListItem extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(
-                        vertical: 10
-                    ),
+                    margin: EdgeInsets.symmetric(vertical: 10),
                     child: Row(
                       children: [
-                        Icon(Icons.phone,color: Colors.lightBlue,),
+                        Icon(
+                          Icons.phone,
+                          color: Colors.lightBlue,
+                        ),
                         Container(
                           margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
                           child: Text(
-                            '${brewery.phone.isNotEmpty?brewery.phone:"NO CONTACT"}',
+                            '${brewery.phone.isNotEmpty ? brewery.phone : "NO CONTACT"}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,

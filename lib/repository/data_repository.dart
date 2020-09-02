@@ -15,7 +15,6 @@ class DataRepository {
 
     //checking whether database has breweries present
     if (databaseManager.hasBreweries()) {
-
       //getting data from database
       breweries = databaseManager.getBreweries();
       controller.add(breweries);
@@ -23,7 +22,6 @@ class DataRepository {
       //getting latest data from REST Api and storing in db
       breweries = await httpService.getBreweries();
       databaseManager.saveBreweries(breweries);
-
     } else {
       //getting data from REST Api for the first time
       breweries = await httpService.getBreweries();
@@ -34,8 +32,7 @@ class DataRepository {
     controller.add(breweries);
   }
 
-  void dispose(){
+  void dispose() {
     controller.close();
   }
-
 }

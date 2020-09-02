@@ -3,7 +3,6 @@ import 'package:http/http.dart';
 import 'package:sonam_web_app/model/brewery.dart';
 
 class HttpService {
-
   //Singleton (to have only one instance of this class in whole app)
   static final HttpService _singleton = HttpService._internal();
   factory HttpService() => _singleton;
@@ -21,7 +20,7 @@ class HttpService {
       List<Brewery> breweries = body
           .map(
             (dynamic item) => Brewery.fromJson(item),
-      )
+          )
           .toList();
       return breweries;
     } else {
